@@ -23,6 +23,7 @@
     "olm-3.2.16"
     "pnpm-10.29.2"
     "electron-40.10.5"
+    "dingtalk-8.2.8.260818002"
   ];
 
   services.openssh.enable = true;
@@ -89,7 +90,6 @@
       libxi
       libsm
       libice
-      gnome2.GConf
       nspr
       nss
       cups
@@ -128,9 +128,9 @@
       SDL_ttf
       SDL2_ttf
       SDL2_mixer
-      libappindicator-gtk2
-      libdbusmenu-gtk2
-      libindicator-gtk2
+      libappindicator-gtk3
+      libdbusmenu-gtk3
+      libindicator-gtk3
       libcaca
       libcanberra
       libgcrypt
