@@ -74,16 +74,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Noctalia Shell
-    noctalia = {
-      # [ghfast.top Mirror]
-      # url = "git+https://ghfast.top/https://github.com/noctalia-dev/noctalia-shell.git?shallow=1&ref=legacy-v4";
-      # [Github]
-      url = "git+https://github.com/noctalia-dev/noctalia-shell.git?shallow=1&ref=legacy-v4";
-
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Fix-python
     fix-python = {
       # [ghfast.top Mirror]
@@ -142,6 +132,8 @@
       specialArgs = { inherit inputs; };
     in
     {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
+
       nixosModules = {
         nur = { ... }: {
           nixpkgs.overlays = [

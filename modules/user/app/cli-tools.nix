@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ lib, pkgs, ... }: {
   home.packages = with pkgs; [
     gping
     doggo
@@ -90,13 +90,40 @@
   programs.jq.enable = true;
 
   programs.git = {
+    enable = true;
     settings = {
+      credential = {
+        "https://github.com".helper = [
+          ""
+          "!/run/current-system/sw/bin/gh auth git-credential"
+        ];
+        "https://gist.github.com".helper = [
+          ""
+          "!/run/current-system/sw/bin/gh auth git-credential"
+        ];
+      };
+      user = {
+        email = "46892455+DeepslateQAQ@users.noreply.github.com";
+        name = "DeepslateQAQ";
+      };
+      push.autoSetupRemote = true;
+      safe.directory = "/tmp";
       core.pager = "delta";
       interactive.diffFilter = "delta --color-only";
       delta.navigate = true;
       merge.conflictStyle = "zdiff3";
     };
   };
+
+  home.activation.archiveLegacyGitConfig = lib.hm.dag.entryBefore [ "writeBoundary" ] ''
+    if [ -e "$HOME/.gitconfig" ] || [ -L "$HOME/.gitconfig" ]; then
+      if [ -e "$HOME/.gitconfig.pre-home-manager" ] || [ -L "$HOME/.gitconfig.pre-home-manager" ]; then
+        errorEcho "Existing Git configuration archive: $HOME/.gitconfig.pre-home-manager"
+        exit 1
+      fi
+      $DRY_RUN_CMD mv "$HOME/.gitconfig" "$HOME/.gitconfig.pre-home-manager"
+    fi
+  '';
 
   programs.eza = {
     enable = true;

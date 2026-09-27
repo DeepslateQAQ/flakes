@@ -10,6 +10,8 @@
       "libvirtd"
       "i2c"
       "docker"
+      "input"
+      "greeter"
     ];
     shell = pkgs.zsh;
   };

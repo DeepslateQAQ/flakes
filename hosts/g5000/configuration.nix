@@ -12,7 +12,7 @@
     ../../modules/system/hardware/wacom.nix
     ../../modules/system/graphics/gnome.nix
     ../../modules/system/graphics/plymouth.nix
-    ../../modules/system/app/clash-verge-rev.nix
+    ../../modules/system/app/mihomo.nix
     ../../modules/system/app/easytier.nix
     ../../modules/system/app/mission-center.nix
     ../../modules/system/virtualisation/kvm.nix
@@ -47,10 +47,26 @@
 
   services.syncthing.user = "deepslate";
 
+  systemd.tmpfiles.rules = [
+    "d /var/lib/syncthing 0700 deepslate syncthing -"
+  ];
+
   services.easytier.instances.ctmc.extraArgs = [
     "--hostname"
     "g5000.slate"
   ];
+
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
+    priority = 5;
+  };
+
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 100;
+    "vm.page-cluster" = 0;
+  };
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
   # system.boot.loader.kernelFile = "vmlinuz";

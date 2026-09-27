@@ -73,36 +73,41 @@
     ../../modules/user/app/cherry-studio.nix
   ];
 
-  services.kanshi.profiles = lib.mkIf (afDevice == "aflare/g5000") {
-    internal = {
-      outputs = [
-        {
-          criteria = "eDP-1";
-          status = "enable";
-          position = "0,0";
-          scale = 1.5;
-        }
-      ];
-    };
-
-    docked = {
-      outputs = [
-        {
-          criteria = "HDMI-A-1";
-          status = "enable";
-          position = "0,0";
-          mode = "1920x1080";
-          scale = 1.0;
-        }
-        {
-          criteria = "eDP-1";
-          status = "enable";
-          position = "1920,0";
-          scale = 1.5;
-        }
-      ];
-    };
-  };
+  services.kanshi.settings = lib.optionals (afDevice == "aflare/g5000") [
+    {
+      profile = {
+        name = "internal";
+        outputs = [
+          {
+            criteria = "eDP-1";
+            status = "enable";
+            position = "0,0";
+            scale = 1.5;
+          }
+        ];
+      };
+    }
+    {
+      profile = {
+        name = "docked";
+        outputs = [
+          {
+            criteria = "HDMI-A-1";
+            status = "enable";
+            position = "0,0";
+            mode = "1920x1080";
+            scale = 1.0;
+          }
+          {
+            criteria = "eDP-1";
+            status = "enable";
+            position = "1920,0";
+            scale = 1.5;
+          }
+        ];
+      };
+    }
+  ];
 
   catppuccin = {
     cursors = {

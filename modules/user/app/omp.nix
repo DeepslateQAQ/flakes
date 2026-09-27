@@ -1,5 +1,5 @@
 { inputs, pkgs, ... }: {
   home.packages = [
-    inputs.llm-agents.packages.${pkgs.system}.omp
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.omp
   ];
 }

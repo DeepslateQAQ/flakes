@@ -1,12 +1,4 @@
 { pkgs, ... }: {
-  # Clash Verge sucks😡
-
-  # programs.clash-verge = {
-  #   enable = true;
-  #   package = pkgs.clash-verge-rev;
-  #   tunMode = true;
-  #   serviceMode = true;
-  # };
   services.mihomo = {
     enable = true;
     tunMode = true;
