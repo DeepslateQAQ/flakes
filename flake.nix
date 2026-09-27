@@ -47,9 +47,9 @@
     # NixOS Hardware Configurations
     nixos-hardware = {
       # [ghfast.top Mirror]
-      url = "git+https://ghfast.top/https://github.com/NixOS/nixos-hardware.git?shallow=1";
+      # url = "git+https://ghfast.top/https://github.com/NixOS/nixos-hardware.git?shallow=1";
       # [Github]
-      # url = "git+https://github.com/NixOS/nixos-hardware.git?shallow=1";
+      url = "git+https://github.com/NixOS/nixos-hardware.git?shallow=1";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -57,9 +57,9 @@
     # Nix User Repository
     nur = {
       # [ghfast.top Mirror]
-      url = "git+https://ghfast.top/https://github.com/nix-community/NUR.git?shallow=1";
+      # url = "git+https://ghfast.top/https://github.com/nix-community/NUR.git?shallow=1";
       # [Github]
-      # url = "git+https://github.com/nix-community/NUR.git?shallow=1";
+      url = "git+https://github.com/nix-community/NUR.git?shallow=1";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -67,9 +67,9 @@
     # Home Manager
     home-manager = {
       # [ghfast.top Mirror]
-      url = "git+https://ghfast.top/https://github.com/nix-community/home-manager.git?shallow=1";
+      # url = "git+https://ghfast.top/https://github.com/nix-community/home-manager.git?shallow=1";
       # [Github]
-      # url = "git+https://github.com/nix-community/home-manager.git?shallow=1";
+      url = "git+https://github.com/nix-community/home-manager.git?shallow=1";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -77,9 +77,9 @@
     # Noctalia Shell
     noctalia = {
       # [ghfast.top Mirror]
-      url = "git+https://ghfast.top/https://github.com/noctalia-dev/noctalia-shell.git?shallow=1&ref=legacy-v4";
+      # url = "git+https://ghfast.top/https://github.com/noctalia-dev/noctalia-shell.git?shallow=1&ref=legacy-v4";
       # [Github]
-      # url = "git+https://github.com/noctalia-dev/noctalia-shell.git?shallow=1&ref=legacy-v4";
+      url = "git+https://github.com/noctalia-dev/noctalia-shell.git?shallow=1&ref=legacy-v4";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -87,33 +87,31 @@
     # Fix-python
     fix-python = {
       # [ghfast.top Mirror]
-      url = "git+https://ghfast.top/https://github.com/GuillaumeDesforges/fix-python.git?shallow=1";
+      # url = "git+https://ghfast.top/https://github.com/GuillaumeDesforges/fix-python.git?shallow=1";
       # [Github]
-      # url = "git+https://github.com/GuillaumeDesforges/fix-python.git?shallow=1";
+      url = "git+https://github.com/GuillaumeDesforges/fix-python.git?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Claude Code (使用 nixpkgs 内置包，故不再引入独立源)
 
     # LLM Agents (oh-my-pi)
     llm-agents = {
       # [ghfast.top Mirror]
-      url = "git+https://ghfast.top/https://github.com/numtide/llm-agents.nix.git?shallow=1";
+      # url = "git+https://ghfast.top/https://github.com/numtide/llm-agents.nix.git?shallow=1";
       # [Github]
-      # url = "git+https://github.com/numtide/llm-agents.nix.git?shallow=1";
+      url = "git+https://github.com/numtide/llm-agents.nix.git?shallow=1";
     };
 
     catppuccin = {
-      url = "git+https://ghfast.top/https://github.com/catppuccin/nix.git?shallow=1";
+      # url = "git+https://ghfast.top/https://github.com/catppuccin/nix.git?shallow=1";
       # [Github]
-      # url = "git+https://github.com/catppuccin/nix.git?shallow=1";
+      url = "git+https://github.com/catppuccin/nix.git?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Dank Material Shell
     dms = {
       # [Github]
-      url = "github:AvengeMedia/DankMaterialShell";
+      url = "git+https://github.com/AvengeMedia/DankMaterialShell.git?shallow=1";
       # [ghfast.top Mirror]
       # url = "git+https://ghfast.top/https://github.com/AvengeMedia/DankMaterialShell.git?shallow=1";
 
@@ -123,7 +121,7 @@
     # DMS Greeter
     dank-greeter = {
       # [Github]
-      url = "github:AvengeMedia/dank-greeter";
+      url = "git+https://github.com/AvengeMedia/dank-greeter.git?shallow=1";
       # [ghfast.top Mirror]
       # url = "git+https://ghfast.top/https://github.com/AvengeMedia/dank-greeter.git?shallow=1";
 

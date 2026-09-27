@@ -14,7 +14,7 @@
 
   home.packages = [
     (pkgs.writeShellScriptBin "satty-edit-clipboard" ''
-      ${pkgs.wl-clipboard}/bin/wl-paste | ${pkgs.satty}/bin/satty --filename -
+      ${pkgs.wl-clipboard}/bin/wl-paste --type image | ${pkgs.satty}/bin/satty --filename -
     '')
   ];
 }
