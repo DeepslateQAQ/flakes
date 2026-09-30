@@ -273,6 +273,27 @@
         "url": "https://github.com/numtide/llm-agents.nix.git"
       }
     },
+    "niri": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790673182,
+        "narHash": "sha256-2JGeVLAabRRhewLh++wurCqZaTTiWtlA4b962/KYmzU=",
+        "ref": "refs/heads/main",
+        "rev": "d8e6ee96d60f8d494292f2307ff59705f1be2c2b",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/SHORiN-KiWATA/niri.git"
+      },
+      "original": {
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/SHORiN-KiWATA/niri.git"
+      }
+    },
     "nixos-hardware": {
       "inputs": {
         "nixpkgs": [
@@ -357,6 +378,7 @@
         "fix-python": "fix-python",
         "home-manager": "home-manager",
         "llm-agents": "llm-agents",
+        "niri": "niri",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nur": "nur"

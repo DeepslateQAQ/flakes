@@ -117,6 +117,16 @@
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Niri (SHORiN-KiWATA fork)
+    niri = {
+      # [ghfast.top Mirror]
+      # url = "git+https://ghfast.top/https://github.com/SHORiN-KiWATA/niri.git?shallow=1";
+      # [Github]
+      url = "git+https://github.com/SHORiN-KiWATA/niri.git?shallow=1";
+
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
