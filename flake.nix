@@ -166,6 +166,17 @@
                 else
                   prev.openldap;
             })
+            (final: prev: {
+              # chatty 0.8.9 always passes `--prefix PURPLE_PLUGIN_PATH : <path>`;
+              # with plugins = [] that path is empty and makeWrapper rejects the
+              # resulting empty search-path segment (GHSA-p7v3-pr2c-8584, seen as
+              # a fixupPhase `#error`). Drop the argument when the path is empty;
+              # plugins != [] keeps the original preFixup, so this override can go
+              # once upstream guards it (lib.optionalString (plugins != [])).
+              chatty = prev.chatty.overrideAttrs (old: {
+                preFixup = prev.lib.replaceStrings [ "--prefix PURPLE_PLUGIN_PATH : ''\n" ] [ "" ] old.preFixup;
+              });
+            })
           ];
         };
       };

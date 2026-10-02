@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, pkgs, ... }: {
   imports = [
     inputs.nur.repos.af-nur.homeModules.linuxqq-clipsync
   ];
