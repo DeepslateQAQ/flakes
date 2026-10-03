@@ -30,6 +30,7 @@
     ../../modules/system/app/nix-keep-drv.nix
     # ../../modules/system/hardware/fprintd.nix
     ../../modules/system/app/tailscale.nix
+    ../../modules/system/app/ydotool.nix
   ];
 
   hardware.nvidia.prime.offload = {
