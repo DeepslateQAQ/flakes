@@ -1,7 +1,8 @@
 { pkgs, ... }:
 let
   sunshine-cuda = pkgs.sunshine.override { cudaSupport = true; };
-in {
+in
+{
   services.sunshine = {
     enable = true;
     autoStart = true;

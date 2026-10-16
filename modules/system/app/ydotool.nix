@@ -1,3 +1,3 @@
 { ... }: {
-    programs.ydotool.enable = true;
+  programs.ydotool.enable = true;
 }
