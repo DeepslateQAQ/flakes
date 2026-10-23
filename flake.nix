@@ -177,6 +177,10 @@
                 preFixup = prev.lib.replaceStrings [ "--prefix PURPLE_PLUGIN_PATH : ''\n" ] [ "" ] old.preFixup;
               });
             })
+            (import ./overlays/wemeet.nix)
+            (import ./overlays/khal.nix)
+            (import ./overlays/v4l2loopback.nix)
+            (import ./overlays/lenovo-legion.nix)
           ];
         };
       };
