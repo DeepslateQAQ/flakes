@@ -189,13 +189,26 @@
         g5000 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = specialArgs // {
-            afDevice = "aflare/g5000";
+            slateId = "/dpslt/g5000";
           };
           modules = [
             self.nixosModules.nur
             self.nixosModules.nixpkgs
             ./hosts/g5000/configuration.nix
             nixos-hardware.nixosModules.lenovo-legion-16irx8h
+            home-manager.nixosModules.home-manager
+          ];
+        };
+        tpx280 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = specialArgs // {
+            slateId = "/dpslt/tpx280";
+          };
+          modules = [
+            self.nixosModules.nur
+            self.nixosModules.nixpkgs
+            ./hosts/tpx280/configuration.nix
+            nixos-hardware.nixosModules.lenovo-thinkpad-x280
             home-manager.nixosModules.home-manager
           ];
         };

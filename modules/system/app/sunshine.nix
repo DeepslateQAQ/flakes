@@ -1,22 +1,16 @@
-{ pkgs, ... }:
-let
-  sunshine-cuda = pkgs.sunshine.override { cudaSupport = true; };
-in
+{ lib, pkgs, ... }:
 {
   services.sunshine = {
     enable = true;
     autoStart = true;
     capSysAdmin = true;
     openFirewall = true;
-    package = sunshine-cuda;
   };
 
-  security.wrappers.sunshine = {
-    owner = "root";
-    group = "root";
-    # capabilities = "cap_sys_admin+ep";
-    source = "${sunshine-cuda}/bin/sunshine";
-  };
+  # The upstream module only grants CAP_SYS_ADMIN as permitted (+p), so
+  # Sunshine cannot raise it and logs "Failed to gain CAP_SYS_ADMIN" on
+  # Wayland. Grant it as effective+permitted like a setcap wrapper.
+  security.wrappers.sunshine.capabilities = lib.mkForce "cap_sys_admin+ep";
 
   xdg.portal = {
     enable = true;

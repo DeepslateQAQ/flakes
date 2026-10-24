@@ -157,12 +157,12 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     // Mod+T hotkey removed per user request.
-    Super+Space hotkey-overlay-title="启动器" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
-    Super+L allow-when-locked=true hotkey-overlay-title="锁定屏幕" { spawn-sh "noctalia-shell ipc call lockScreen lock"; }
-    Ctrl+Alt+Delete hotkey-overlay-title="会话菜单" { spawn-sh "noctalia-shell ipc call sessionMenu toggle"; }
-    Super+Shift+E hotkey-overlay-title="会话菜单" { spawn-sh "noctalia-shell ipc call sessionMenu toggle"; }
-    Super+R hotkey-overlay-title="运行程序" { spawn-sh "noctalia-shell ipc call launcher command"; }
-    Super+V hotkey-overlay-title="剪贴板历史记录" { spawn-sh "noctalia-shell ipc call launcher clipboard"; }
+    Super+Space hotkey-overlay-title="启动器" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
+    Super+L allow-when-locked=true hotkey-overlay-title="锁定屏幕" { spawn "dms" "ipc" "call" "lock" "lock"; }
+    Ctrl+Alt+Delete hotkey-overlay-title="会话菜单" { spawn "dms" "ipc" "call" "powermenu" "toggle"; }
+    Super+Shift+E hotkey-overlay-title="会话菜单" { spawn "dms" "ipc" "call" "powermenu" "toggle"; }
+    Super+R hotkey-overlay-title="运行程序" { spawn-sh "dms ipc spotlight-bar openQuery \">\""; }
+    Super+V hotkey-overlay-title="剪贴板历史记录" { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
     Super+T hotkey-overlay-title="启动 Shell" { spawn "kitty"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.

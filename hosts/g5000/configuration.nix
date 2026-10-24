@@ -8,6 +8,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../profiles/base.nix
+    ../../modules/system/virtualisation/docker.nix
     ../../modules/system/hardware/ddcutil.nix
     ../../modules/system/hardware/wacom.nix
     ../../modules/system/graphics/gnome.nix
@@ -38,6 +39,10 @@
     enableOffloadCmd = true;
   };
   hardware.nvidia.modesetting.enable = true;
+
+  services.sunshine.package = pkgs.sunshine.override {
+    cudaSupport = true;
+  };
 
   services.pipewire = {
     enable = true;
