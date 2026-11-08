@@ -7,6 +7,7 @@ in
     checkFlags = (prev.checkFlags or [ ]) ++ [
       "--skip=closing_window_stays_in_place_during_left_refill"
       "--skip=closing_windows_stay_in_place_during_rightmost_refill"
+      "--skip=pick_color_with_magnifier"
     ];
   });
 

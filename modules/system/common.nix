@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
   imports = [
     ./network/bonjour.nix
   ];
@@ -115,7 +115,6 @@
       freeglut
       libjpeg
       libpng
-      libpng12
       libsamplerate
       libmikmod
       libtheora
@@ -154,8 +153,53 @@
       cairo
       gdk-pixbuf
       libglvnd
+
+      # WebView 运行时：WebKitGTK（Tauri / pywebview / wails / webkit 壳的 AppImage）。
+      # 旧的 4.0 与 libsoup2 已被 nixpkgs 删除，只剩这两套 ABI。
+      webkitgtk_4_1 # libwebkit2gtk-4.1.so.0 / libjavascriptcoregtk-4.1.so.0（GTK3）
+      webkitgtk_6_0 # libwebkitgtk-6.0.so.4 / libjavascriptcoregtk-6.0.so.1（GTK4）
+      libsoup_3
+      gtk4
+      libadwaita
+      graphene # GTK4 必然带它，webkitgtk-6.0 的 pkg-config 也一样
+      harfbuzz # webkit2gtk pkg-config 会直接链到它
+      gst_all_1.gstreamer
+      gst_all_1.gst-plugins-base
+
+      # FHS 应用常见缺口（网络认证、Wayland、旧 GL/X11、托盘、xcb-util 系列）
+      krb5
+      libtirpc
+      libbsd
+      keyutils
+      wayland
+      libdecor
+      libgudev
+      libGLU
+      libXpm
+      libayatana-appindicator
+      xcbutil
+      xcbutilimage
+      xcbutilkeysyms
+      xcbutilrenderutil
+      xcbutilwm
+      xcbutilcursor
+      xcbutilxrm
     ];
   };
+
+  # GIO 的运行时模块（TLS 后端/代理）不在 nix-ld 的 LD 路径上，但
+  # programs.dconf / services.gvfs / services.gnome.glib-networking 已经把它们
+  # 写进 GIO_EXTRA_MODULES，FHS 应用直接继承 session 环境即可，故此处不重复定义。
+
+  # 自带 OpenSSL 的 FHS 应用（AppImage、自解压安装包、别人的 JDK/Node 之类）
+  # 常按发行版的 openssldir 找信任库：Debian 系编出来是 /usr/lib/ssl/{cert.pem,certs}，
+  # NixOS 上这两个路径都不存在，结果不是「某张证书验不过」而是「一个根都加载不到」，
+  # 表现为任何 TLS 连接都不可信。显式把系统 bundle 交给它们即可。
+  # 用 caBundle 的 /nix/store 路径而不是 /etc/ssl/certs/*：后者是指向 /etc/static 的符号
+  # 链接，只 bind 了 /etc/ssl/certs 的沙箱（WebKit bwrap 等）解析不到链接目标。
+  # 不设 SSL_CERT_DIR：/etc/ssl/certs 里没有 hashed 证书，指过去只是把 CApath 变成空目录。
+  environment.sessionVariables.SSL_CERT_FILE = config.security.pki.caBundle;
+  environment.sessionVariables.CURL_CA_BUNDLE = config.security.pki.caBundle;
 
   programs.git.enable = true;
   programs.vim.enable = true;

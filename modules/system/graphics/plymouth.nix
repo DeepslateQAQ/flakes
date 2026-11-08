@@ -176,7 +176,7 @@ in
     "fbcon=nodefer"
   ];
   boot.consoleLogLevel = 3;
-  boot.initrd.verbose = false;
+  # boot.initrd.verbose = false;
 
   boot.loader.timeout = 0;
   boot.loader.systemd-boot.consoleMode = "keep";

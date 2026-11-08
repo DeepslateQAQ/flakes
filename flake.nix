@@ -151,7 +151,12 @@
           ];
         };
         nixpkgs = { ... }: {
-          nixpkgs.config.allowUnfree = true;
+          nixpkgs.config = {
+            allowUnfree = true;
+            problems.handlers = {
+              "gtk+".broken = "warn";
+            };
+          };
           nixpkgs.overlays = [
             (final: prev: {
               openssl_1_1 = (prev.callPackage ./overlays/openssl-1.1/default.nix { }).openssl_1_1;
@@ -166,18 +171,8 @@
                 else
                   prev.openldap;
             })
-            (final: prev: {
-              # chatty 0.8.9 always passes `--prefix PURPLE_PLUGIN_PATH : <path>`;
-              # with plugins = [] that path is empty and makeWrapper rejects the
-              # resulting empty search-path segment (GHSA-p7v3-pr2c-8584, seen as
-              # a fixupPhase `#error`). Drop the argument when the path is empty;
-              # plugins != [] keeps the original preFixup, so this override can go
-              # once upstream guards it (lib.optionalString (plugins != [])).
-              chatty = prev.chatty.overrideAttrs (old: {
-                preFixup = prev.lib.replaceStrings [ "--prefix PURPLE_PLUGIN_PATH : ''\n" ] [ "" ] old.preFixup;
-              });
-            })
             (import ./overlays/wemeet.nix)
+            (import ./overlays/ccal.nix)
             (import ./overlays/khal.nix)
             (import ./overlays/v4l2loopback.nix)
             (import ./overlays/lenovo-legion.nix)
